@@ -1,0 +1,4 @@
+.env
+.serverless
+transmission/config/settings.json
+node_modules

@@ -1,0 +1,38 @@
+version: '3.5'
+services:
+  serverless:
+    build:
+      context: ./serverless
+      args:
+        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./serverless:/app
+      - /app/node_modules
+    environment: 
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+      - ECS_CLUSTER_NAME=$ECS_CLUSTER_NAME
+      - ECS_SERVICE_NAME=$ECS_SERVICE_NAME
+      - AUTO_SCALING_GROUP_NAME=$AUTO_SCALING_GROUP_NAME
+      - S3_BUCKET_NAME=$S3_BUCKET_NAME
+  transmission:
+    build:
+      context: ./transmission
+    ports:
+      - 9091:9091
+      - 51413:51413
+    tty: true
+    stdin_open: true
+    environment:
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+      - ECS_CLUSTER_NAME=$ECS_CLUSTER_NAME
+      - ECS_SERVICE_NAME=$ECS_SERVICE_NAME
+      - AUTO_SCALING_GROUP_NAME=$AUTO_SCALING_GROUP_NAME
+      - S3_BUCKET_NAME=$S3_BUCKET_NAME
+      - STAGE=development

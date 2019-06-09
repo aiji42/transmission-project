@@ -1,0 +1,9 @@
+{
+  "name": "serverless-up-ecs-task-by-s3-upload",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-python-requirements": "^4.3.0"
+  }
+}
