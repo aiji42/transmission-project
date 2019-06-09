@@ -6,15 +6,12 @@ workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          repo: "${ECR_REPOSITORY_NAME}"
-          region: ${AWS_DEFAULT_REGION}
-          tag: "latest"
-          path: "./transmission/"
+          repo: ${ECR_REPOSITORY_NAME}
+          tag: latest
+          path: ./transmission/
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          aws-region: ${AWS_DEFAULT_REGION}
-          family: "${ECS_SERVICE_NAME}"
-          cluster-name: "${ECS_CLUSTER_NAME}"
-          container-image-name-updates: "container=${ECS_SERVICE_NAME},tag=latest"
+          family: ${ECS_SERVICE_NAME}
+          cluster-name: ${ECS_CLUSTER_NAME}
+          container-image-name-updates: 'container=${ECS_SERVICE_NAME},tag=latest'
