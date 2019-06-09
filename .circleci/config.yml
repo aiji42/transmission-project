@@ -9,7 +9,7 @@ workflows:
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           repo: "${ECR_REPOSITORY_NAME}"
           region: ${AWS_DEFAULT_REGION}
-          tag: latest
+          tag: "latest"
           path: "./transmission/"
       - aws-ecs/deploy-service-update:
           requires:
