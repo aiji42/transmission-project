@@ -8,6 +8,7 @@ workflows:
       - aws-ecr/build-and-push-image:
           repo: ${ECR_REPOSITORY_NAME}
           tag: latest
+          dockerfile: ./transmission/Dockerfile
           path: ./transmission/
       - aws-ecs/deploy-service-update:
           requires:
