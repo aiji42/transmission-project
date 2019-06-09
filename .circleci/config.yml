@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-ecr: circleci/aws-ecr@0.0.2
+  aws-ecr: circleci/aws-ecr@6.0.0
   aws-ecs: circleci/aws-ecs@0.0.3
 workflows:
   build-and-deploy:
@@ -9,7 +9,7 @@ workflows:
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           repo: "${ECR_REPOSITORY_NAME}"
           region: ${AWS_DEFAULT_REGION}
-          tag: "${CIRCLE_SHA1}"
+          tag: latest
           path: "./transmission/"
       - aws-ecs/deploy-service-update:
           requires:
@@ -17,4 +17,4 @@ workflows:
           aws-region: ${AWS_DEFAULT_REGION}
           family: "${ECS_SERVICE_NAME}"
           cluster-name: "${ECS_CLUSTER_NAME}"
-          container-image-name-updates: "container=${ECS_SERVICE_NAME},tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=${ECS_SERVICE_NAME},tag=latest"
