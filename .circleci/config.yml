@@ -13,6 +13,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: ${ECS_SERVICE_NAME}
+          family: ${ECS_TASK_NAME}
           cluster-name: ${ECS_CLUSTER_NAME}
-          container-image-name-updates: 'container=${ECS_SERVICE_NAME},tag=latest'
+          service-name: ${ECS_SERVICE_NAME}
+          container-image-name-updates: 'container=${ECS_TASK_NAME},tag=latest'
