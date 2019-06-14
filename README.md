@@ -13,8 +13,6 @@ Transmission を ECS で必要なときだけ可動させるプロジェクト
 # in development
 cp .env.sample .env
 vim .env # 各種環境変数を埋める
-cp transmission/config/settings.json.sample transmission/config/settings.json
-vim transmission/config/settings.json # transmission のウェブコンソールようの ID/PASS を記述 
 docker-compose build
 docker-compose up
 ```
