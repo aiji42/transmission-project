@@ -19,12 +19,8 @@ docker-compose up
 
 ## Deploy
 
-```bash
-sh ./transmission/scripts/push_ecr.sh
-docker-compose run --rm serverless sls deploy -v -s prod 
-```
-
-※ この辺はCircleCIで自動化予定
+- [CircleCI](https://circleci.com)でデプロイ
+- `.circleci/config.yml`参照
 
 ## License
 
