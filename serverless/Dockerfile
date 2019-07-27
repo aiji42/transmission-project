@@ -5,8 +5,8 @@ ARG AWS_SECRET_ACCESS_KEY
 # update apt-get
 RUN apt-get update -y && apt-get upgrade -y
 
-# Install Nodejs 8
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+# Install Nodejs 10
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
 # install aws-cli
